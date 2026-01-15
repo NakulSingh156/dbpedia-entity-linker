@@ -4,6 +4,7 @@
 
 It solves the "Link Linking" problem where standard tools fail on colloquialisms by leveraging a **Hybrid Wikipedia Strategy** (Strict Redirects + Opensearch) before applying fuzzy matching and type inference.
 
+
 ## Pipeline Architecture
 
 ```mermaid
@@ -15,41 +16,59 @@ graph LR
     D & E --> F[Candidate Scoring]
     F --> G[Neuro-Symbolic Validation]
     G --> H[Final DBpedia URI]
+```
+
 (Note: If the diagram above doesn't render on your viewer, it represents the flow from Spacy NER -> Wikipedia API -> DBpedia Lookup -> Final Scoring.)
 
-How to Run
+**#How to Run**
+
 Clone and Install dependencies:
 
-Bash
+
 pip install -r requirements.txt
+
 python -m spacy download en_core_web_sm
+
 Run the Main Pipeline (includes 3 demo test suites):
 
-Bash
+
 python src/main.py
-📊 Example Outputs
+
+**#Example Outputs**
+
 The system handles three distinct levels of difficulty:
 
 Input Entity	Detected As	Strategy Used
+
 "UK"	United Kingdom	Strict Redirect (Wikipedia API)
+
 "Barca"	FC Barcelona	Opensearch (Autocomplete API)
+
 "Man City"	Manchester City F.C.	Fuzzy Matching + Type Scoring
+
 "Georgina Rodríguez"	Person (Inferred)	Neuro-Symbolic Relation Inference
-⚠️ Known Limitations
+
+**#Known Limitations**
+
 Context Blindness: The current resolver is context-agnostic. It may link "Champions League" to the most popular Wikipedia result (UEFA) even if the context implies another sport, though the Opensearch fallback mitigates this.
 
 API Rate Limits: Relies on live Wikipedia/DBpedia APIs. Heavy usage requires caching (planned for GSoC '26).
 
-Benchmarks
+**#Benchmarks**
+
 A curated dataset of 50 sentences covering Sports, Politics, and Tech is included in benchmarks/sentences.json to test the resolver's robustness against real-world variance.
 
 
 ---
 
 ### 2. The Benchmark Dataset (`benchmarks/sentences.json`)
+
 You need to show you care about **data**.
+
 1. Create a folder named `benchmarks`.
+   
 2. Inside it, create `sentences.json`.
+   
 3. Paste this massive list. It covers every edge case we discussed.
 
 ```json
@@ -305,11 +324,13 @@ You need to show you care about **data**.
     "focus": ["Kubernetes"]
   }
 ]
+```
 3. Your requirements.txt
 
 Just in case you forgot this file, create requirements.txt and add:
 
-Plaintext
 requests==2.31.0
+
 spacy==3.7.2
+
 rapidfuzz==3.6.1
