@@ -4,7 +4,7 @@
 
 It solves the "Link Linking" problem where standard tools fail on colloquialisms by leveraging a **Hybrid Wikipedia Strategy** (Strict Redirects + Opensearch) before applying fuzzy matching and type inference.
 
-#**The Core Innovation**
+**#The Core Innovation**
 
 **The Problem:**
 Traditional entity linkers (like DBpedia Spotlight) are brittle. They expect formal names (e.g., *"United Kingdom"*). If a user types colloquialisms like *"UK"*, *"Barca"*, or *"Man City"*, those tools often fail or return zero results. This creates "dead links" and missing data in Knowledge Graphs.
@@ -19,7 +19,7 @@ Instead of a simple lookup, I engineered a **Multi-Stage Resolver** that mimics 
 * **Linguistic Chaos:** Instantly resolves acronyms (*UK*), slang (*Barca*), and partial matches (*Man City*) that typically break standard NLP tools.
 * **Logical Ambiguity:** Intelligently distinguishes between real articles and "Disambiguation" pages, while using logic to infer missing types (e.g., knowing a *spouse* must be a *Person*).
 
-**1. Pipeline Architecture**
+**#Pipeline Architecture**
 
 ```mermaid
 graph LR
@@ -77,7 +77,7 @@ A curated dataset of 50 sentences covering Sports, Politics, and Tech is include
 
 ---
 
-### 2. The Benchmark Dataset (`benchmarks/sentences.json`)
+**#The Benchmark Dataset (`benchmarks/sentences.json`)**
 
 You need to show you care about **data**.
 
@@ -341,7 +341,7 @@ You need to show you care about **data**.
   }
 ]
 ```
-3. Your requirements.txt
+**#Your requirements.txt**
 
 Just in case you forgot this file, create requirements.txt and add:
 
