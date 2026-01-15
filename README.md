@@ -4,6 +4,20 @@
 
 It solves the "Link Linking" problem where standard tools fail on colloquialisms by leveraging a **Hybrid Wikipedia Strategy** (Strict Redirects + Opensearch) before applying fuzzy matching and type inference.
 
+#**The Core Innovation**
+
+**The Problem:**
+Traditional entity linkers (like DBpedia Spotlight) are brittle. They expect formal names (e.g., *"United Kingdom"*). If a user types colloquialisms like *"UK"*, *"Barca"*, or *"Man City"*, those tools often fail or return zero results. This creates "dead links" and missing data in Knowledge Graphs.
+
+**The Solution:**
+Instead of a simple lookup, I engineered a **Multi-Stage Resolver** that mimics how a human researcher finds information:
+1.  **Redirects First:** It checks if Wikipedia already knows the abbreviation (e.g., `UK` → `United Kingdom`).
+2.  **Slang Intelligence:** If that fails, it queries the Wikipedia Autocomplete API to catch slang (e.g., `Barca` → `FC Barcelona`), specifically filtering out "Disambiguation" pages to avoid bad links.
+3.  **Neuro-Symbolic Logic:** For complex facts (like relationships), it combines Neural extraction (Spacy) with Symbolic validation (DBpedia Schema) to ensure the data makes sense (e.g., ensuring a "spouse" is actually a Person).
+
+**In short, the system handles:**
+* **Linguistic Chaos:** Instantly resolves acronyms (*UK*), slang (*Barca*), and partial matches (*Man City*) that typically break standard NLP tools.
+* **Logical Ambiguity:** Intelligently distinguishes between real articles and "Disambiguation" pages, while using logic to infer missing types (e.g., knowing a *spouse* must be a *Person*).
 
 **1.Pipeline Architecture**
 
@@ -36,7 +50,6 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 
 Run the Main Pipeline (includes 3 demo test suites):
-
 
 python src/main.py
 
