@@ -19,7 +19,7 @@ Instead of a simple lookup, I engineered a **Multi-Stage Resolver** that mimics 
 * **Linguistic Chaos:** Instantly resolves acronyms (*UK*), slang (*Barca*), and partial matches (*Man City*) that typically break standard NLP tools.
 * **Logical Ambiguity:** Intelligently distinguishes between real articles and "Disambiguation" pages, while using logic to infer missing types (e.g., knowing a *spouse* must be a *Person*).
 
-**1.Pipeline Architecture**
+**1. Pipeline Architecture**
 
 ```mermaid
 graph LR
