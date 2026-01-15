@@ -5,7 +5,7 @@
 It solves the "Link Linking" problem where standard tools fail on colloquialisms by leveraging a **Hybrid Wikipedia Strategy** (Strict Redirects + Opensearch) before applying fuzzy matching and type inference.
 
 
-## Pipeline Architecture
+**1.Pipeline Architecture**
 
 ```mermaid
 graph LR
@@ -21,7 +21,10 @@ graph LR
 (Note: If the diagram above doesn't render on your viewer, it represents the flow from Spacy NER -> Wikipedia API -> DBpedia Lookup -> Final Scoring.)
 
 #**Live Demo Output**
+
 See the prototype in action: (The screenshot below shows the system correctly resolving "Barca", handling the "FIFA Ballon d'Or" extraction, and using relation inference to identify "Georgina Rodríguez" as a Person.)
+
+![Prototype Demo Output](assets/demo_output.png)
 
 **#How to Run**
 
@@ -37,19 +40,16 @@ Run the Main Pipeline (includes 3 demo test suites):
 
 python src/main.py
 
-**#Example Outputs**
+**#Feature Matrix**
 
 The system handles three distinct levels of difficulty:
 
-Input Entity	Detected As	Strategy Used
-
-"UK"	United Kingdom	Strict Redirect (Wikipedia API)
-
-"Barca"	FC Barcelona	Opensearch (Autocomplete API)
-
-"Man City"	Manchester City F.C.	Fuzzy Matching + Type Scoring
-
-"Georgina Rodríguez"	Person (Inferred)	Neuro-Symbolic Relation Inference
+| Input Entity | Detected As | Strategy Used |
+| :--- | :--- | :--- |
+| **"UK"** | `United Kingdom` | Strict Redirect (Wikipedia API) |
+| **"Barca"** | `FC Barcelona` | Opensearch (Autocomplete API) |
+| **"Man City"** | `Manchester City F.C.` | Fuzzy Matching + Type Scoring |
+| **"Georgina Rodríguez"** | `Person (Inferred)` | Neuro-Symbolic Relation Inference |
 
 **#Known Limitations**
 
