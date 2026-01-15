@@ -20,6 +20,9 @@ graph LR
 
 (Note: If the diagram above doesn't render on your viewer, it represents the flow from Spacy NER -> Wikipedia API -> DBpedia Lookup -> Final Scoring.)
 
+#**Live Demo Output**
+See the prototype in action: (The screenshot below shows the system correctly resolving "Barca", handling the "FIFA Ballon d'Or" extraction, and using relation inference to identify "Georgina Rodríguez" as a Person.)
+
 **#How to Run**
 
 Clone and Install dependencies:
